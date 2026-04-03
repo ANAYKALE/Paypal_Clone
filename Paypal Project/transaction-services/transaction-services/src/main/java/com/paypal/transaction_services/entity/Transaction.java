@@ -13,14 +13,30 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="sender_name",nullable = false)
-    private String senderName;
-
-    @Column(name="receiver_name",nullable = false)
-    private String receiverName;
 
 
-    //@Positive(message="Amount must be positive")
+    @Column(nullable = false)
+    private Long senderId;
+
+    @Column(nullable = false)
+    private Long receiverId;
+
+    public Long getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
+    }
+
+    public Long getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(Long receiverId) {
+        this.receiverId = receiverId;
+    }
+//@Positive(message="Amount must be positive")
 
     @Column(nullable = false)
     @Positive(message ="Value must bePositive")
@@ -42,21 +58,7 @@ public class Transaction {
         this.id = id;
     }
 
-    public String getSenderName() {
-        return senderName;
-    }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
 
     public Double getAmount() {
         return amount;
@@ -82,13 +84,14 @@ public class Transaction {
         this.status = status;
     }
 
-    public Transaction(Long id, String senderName, String receiverName, Double amount, LocalDateTime timestamp, String status) {
+    public Transaction(Long senderId,Long receiverId,Long id, String senderName, String receiverName, Double amount, LocalDateTime timestamp, String status) {
         this.id = id;
-        this.senderName = senderName;
-        this.receiverName = receiverName;
+
         this.amount = amount;
         this.timestamp = timestamp;
         this.status = status;
+        this.receiverId=receiverId;
+        this.senderId=senderId;
     }
 
     @PrePersist
@@ -107,8 +110,6 @@ public class Transaction {
 
         return "Transaction{"+
                 "id" +id +
-                ", SenderName="+senderName+'\''+
-                ", reciverName="+receiverName+'\''+
                 ", amount="+amount+'\''+
                 ", timestamp="+timestamp+'\''+
                 ", status="+status+'\''+
