@@ -1,13 +1,12 @@
 package com.paypal.transaction_services.service;
 
-import com.paypal.transaction_services.entity.Transaction;
 import com.paypal.transaction_services.kafka.KafkaEventProducer;
 import com.paypal.transaction_services.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tools.jackson.databind.ObjectMapper;
-
+import com.paypal.transaction_services.entity.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -79,8 +78,4 @@ public class TransactionServiceImpl implements TransactionService{
         return saved;
     }
 
-    @Override
-    public List<Transaction> getALLTransaction() {
-        return repository.findAll();
-    }
 }

@@ -1,6 +1,6 @@
 package com.paypal.transaction_services.service;
 
-import com.paypal.transaction_services.entity.Transaction;
+import com.paypal.transaction_services.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

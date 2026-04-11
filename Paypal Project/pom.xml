@@ -13,7 +13,7 @@
     <modules>
         <module>user_services/demo</module>
         <module>transaction-services/transaction-services</module>
-
+        <module>notification-services/notification-services</module>
 
         <!-- Add your other services here -->
     </modules>
