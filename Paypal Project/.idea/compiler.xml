@@ -10,12 +10,14 @@
         <module name="demo" />
         <module name="transaction-services" />
         <module name="notification-services" />
+        <module name="reward-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo" target="17" />
       <module name="notification-services" target="17" />
       <module name="Paypal Project" target="1.5" />
+      <module name="reward-service" target="17" />
       <module name="transaction-services" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -23,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
       <module name="notification-services" options="-parameters" />
+      <module name="reward-service" options="-parameters" />
       <module name="transaction-services" options="-parameters" />
     </option>
   </component>

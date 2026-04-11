@@ -78,4 +78,9 @@ public class TransactionServiceImpl implements TransactionService{
         return saved;
     }
 
+    @Override
+    public List<Transaction> getALLTransaction() {
+        return null;
+    }
+
 }
