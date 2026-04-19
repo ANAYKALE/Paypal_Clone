@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class JWTUtil {
 
-    private static final String SECRET = "Anay12Anay12Anay12Anay12Anay12";
+    private static final String SECRET = "Anay12Anay12Anay12Anay12Anay1234";
 
     private Key getSigningKey(){
         return Keys.hmacShaKeyFor(SECRET.getBytes());

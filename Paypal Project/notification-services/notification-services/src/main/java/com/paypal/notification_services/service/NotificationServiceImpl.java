@@ -3,10 +3,12 @@ package com.paypal.notification_services.service;
 import com.paypal.notification_services.entity.Notification;
 import com.paypal.notification_services.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class NotificationServiceImpl implements NotificationService{
 
     @Autowired

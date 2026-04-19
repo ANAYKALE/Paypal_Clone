@@ -1,0 +1,76 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_FIRST
+      routes:
+
+          # user micro service
+        - id: user_services
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limitter-replenishRate: 10
+                redis-rate-limitter.burstCapacity: 20
+                redis-rate-limitter-requestedToken: 1
+          #Transaction microservice
+        - id: transaction-services
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/transactions/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limitter-replenishRate: 10
+                redis-rate-limitter.burstCapacity: 20
+                redis-rate-limitter-requestedToken: 1
+
+          #Reward Service
+        - id: reward-services
+          uri: http://localhost:8089
+          predicates:
+            - Path=/api/rewards/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limitter-replenishRate: 10
+                redis-rate-limitter.burstCapacity: 20
+                redis-rate-limitter-requestedToken: 1
+
+          #notification-service
+        - id: notification-services
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/notification/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limitter-replenishRate: 10
+                redis-rate-limitter.burstCapacity: 20
+                redis-rate-limitter-requestedToken: 1
+
+          cloud:
+            gateway: <2 keys>
+
+            httpclient:
+              max-initial-line-length: 4096
+              max-header-size: 8192
+            filters:
+              - name: RequestSize
+                args:
+                  maxSize:1MB
+
+
+
+
+
+
+
