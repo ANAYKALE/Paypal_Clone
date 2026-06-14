@@ -7,7 +7,9 @@ import java.util.List;
 
 
 public interface TransactionService {
-Transaction createTransaction(Transaction transaction);
 
-List<Transaction> getALLTransaction();
+    Transaction createTransaction(Transaction transaction);
+    public Transaction getTransactionById(Long id);
+
+    public List<Transaction> getTransactionsByUser(Long userId);
 }
